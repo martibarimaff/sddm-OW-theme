@@ -1,17 +1,15 @@
 [SddmGreeterTheme]
 Name=sddm-OW-theme
-Description=Theme for SDDM
-Author=Martino Bariselli Maffignoli
-Copyright=Copyright (C) 2025 Martino Bariselli Maffignoli
+Description=Outer Wilds inspired Theme for SDDM
+Author=martibarimaff
+Copyright=Copyright (C) 2025 martibarimaff
 License=GPL-3.0-or-later
 Type=sddm-theme
 Version=1.0.0
 Website=https://github.com/martibarimaff/sddm-OW-theme
-Screenshot=
 MainScript=Main.qml
 ConfigFile=theme.conf
 TranslationsDirectory=translations
-Email=martino.barisellimaffignoli@gmail.com
 Theme-Id=sddm-OW-theme
 Theme-API=2.11
 QtVersion=6
