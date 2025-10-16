@@ -248,7 +248,7 @@ Column {
             width: parent.width
             focus: config.ForcePasswordFocus == "true" ? true : false
             selectByMouse: true
-            echoMode: /*revealSecret.checked ? TextInput.Normal :*/ TextInput.Password
+            echoMode: TextInput.Password
             placeholderText: config.TranslatePlaceholderPassword || textConstants.password
             horizontalAlignment: TextInput.AlignHCenter
             passwordCharacter: "•"
