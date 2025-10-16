@@ -1,4 +1,27 @@
-// Copyright at EOF
+/*
+Copyright (C) 2025  martibarimaff
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or any
+later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+NOTE
+While the rest of this software is licensed under the GNU GPLv3 license,
+the Outer Wilds inspired background artworks are subject to the
+Mobius Digital ​Fan Content Policy & Guidelines
+<https://www.mobiusdigitalgames.com/fan-content-policy.html>
+and are therefore not to be sold for money
+*/
+// SDDM Eucalyptus Drop Copyright at EOF
 
 import QtQuick 2.11
 import QtQuick.Layouts 1.11
