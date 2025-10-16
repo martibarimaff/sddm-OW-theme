@@ -36,10 +36,6 @@ Pane {
 
     height: Screen.height
     width: Screen.ScreenWidth
-
-    //LayoutMirroring.enabled: config.ForceRightToLeft == "true" ? true : Qt.application.layoutDirection === Qt.RightToLeft
-    //LayoutMirroring.childrenInherit: true
-
     
     padding: config.ScreenPadding
     palette.button: "transparent"
@@ -53,27 +49,6 @@ Pane {
         Screen.primaryOrientation == Qt.PortraitOrientation ? parseInt(height / 160) : parseInt(height / 80)
     focus: true
 
-    /*
-    property bool leftleft: config.HaveFormBackground == "true" &&
-                            config.PartialBlur == "false" &&
-                            config.FormPosition == "left" &&
-                            config.BackgroundImageHAlignment == "left"
-
-    property bool leftcenter: config.HaveFormBackground == "true" &&
-                              config.PartialBlur == "false" &&
-                              config.FormPosition == "left" &&
-                              config.BackgroundImageHAlignment == "center"
-
-    property bool rightright: config.HaveFormBackground == "true" &&
-                              config.PartialBlur == "false" &&
-                              config.FormPosition == "right" &&
-                              config.BackgroundImageHAlignment == "right"
-
-    property bool rightcenter: config.HaveFormBackground == "true" &&
-                               config.PartialBlur == "false" &&
-                               config.FormPosition == "right" &&
-                               config.BackgroundImageHAlignment == "center"
-    */
 
     Component.onCompleted: {
         Orientation.getOrientation()
@@ -85,35 +60,25 @@ Pane {
         anchors.fill: parent
         height: parent.height
         width: parent.width
-
-        Rectangle { //black rectangle that occupy all screen what the purpose? idk
-            id: tintLayer
-            anchors.fill: parent
-            width: parent.width
-            height: parent.height
-            color: "Black"
-            opacity: 1.0
-            z: 0
-        }
-
         
         LoginForm {
             id: form
             height: parent.height
-            // If in portrait orientation we should take up half instead of 40% of the screen to avoid crowding
             width: parent.width / 2.5
-            anchors.left: parent.left //config.FormPosition == "left" ? parent.left : undefined
-            //virtualKeyboardActive: virtualKeyboard.state == "visible" ? true : false
+            anchors.left: parent.left
             z: 2
         }
 
         Image {
             id: backgroundPlaceholderImage
 
-            //
+            anchors.fill: parent
+            width: parent.width
+            height: parent.height
+
             z: 1
             source: "Backgrounds/ow-background.png"
-            visible: true //changed
+            visible: true //gets changed on video start
         }
 
         AnimatedImage {
@@ -141,8 +106,6 @@ Pane {
 
             height: parent.height
             width: parent.width
-            //anchors.left: leftleft || leftcenter ? formBackground.right : undefined
-            //anchors.right: rightright || rightcenter ? formBackground.left : undefined
 
             horizontalAlignment: Image.AlignHCenter
 

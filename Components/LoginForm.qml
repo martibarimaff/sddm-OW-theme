@@ -10,33 +10,19 @@ ColumnLayout {
 
     property int p: config.ScreenPadding
     property string a: config.FormPosition
-    //property alias systemButtonVisibility: systemButtons.visible
     property alias clockVisibility: clock.visible
-    //property bool virtualKeyboardActive
 
     Clock {
         id: clock
         Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
         Layout.preferredHeight: root.height / 3
-        //Layout.leftMargin: p != "0" ? a == "left" ? -p : a == "right" ? p : 0 : 0
     }
 
     Input {
         id: input
         Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
         Layout.preferredHeight: root.height / 3
-        //Layout.leftMargin: p != "0" ? a == "left" ? -p : a == "right" ? p : 0 : 0
-        //Layout.topMargin: root.height / 20
     }
-
-    // SystemButtons {
-    //     id: systemButtons
-    //     Layout.alignment: Qt.AlignHCenter //| Qt.AlignBottom
-    //     Layout.preferredHeight: root.height / 4
-    //     Layout.maximumHeight: root.height / 4
-    //     //Layout.leftMargin: p != "0" ? a == "left" ? -p : a == "right" ? p : 0 : 0
-    //     exposedSession: input.exposeSession
-    // }
 
 }
 
