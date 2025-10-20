@@ -189,7 +189,7 @@ Column {
 
             text: config.ForceLastUser == "true" ? selectUser.currentText : null
             font.pointSize: root.font.pointSize
-            font.capitalization: config.AllowBadUsernames == "false" ? Font.Capitalize : Font.MixedCase
+            font.capitalization: config.ShowUsernameAllcaps == "true" ? Font.AllUppercase /*Font.Capitalize*/ : Font.MixedCase
             anchors.centerIn: parent
             height: root.font.pointSize * 3
             width: parent.width
@@ -294,12 +294,13 @@ Column {
         height: root.font.pointSize * 2.3
         width: parent.width / 2
         anchors.horizontalCenter: parent.horizontalCenter
+        anchors.bottom: usernameField.top
         Label {
             id: errorMessage
             width: parent.width
             text: failed ? config.TranslateLoginFailedWarning || textConstants.loginFailed + "!" : keyboard.capsLock ? config.TranslateCapslockWarning || textConstants.capslockWarning : null
             horizontalAlignment: Text.AlignHCenter
-            font.pointSize: root.font.pointSize * 0.8
+            font.pointSize: root.font.pointSize * 1
             font.italic: true
             color: root.palette.text
             opacity: 0
