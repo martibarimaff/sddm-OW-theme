@@ -38,7 +38,7 @@ Pane {
     height: Screen.height
     width: Screen.ScreenWidth
     
-    padding: config.ScreenPadding
+    padding: -1//config.ScreenPadding
     palette.button: "transparent"
     palette.highlight: config.AccentColour
     palette.text: config.MainColour
@@ -78,7 +78,7 @@ Pane {
             height: parent.height
 
             z: 1
-            source: "Backgrounds/ow-background.png"
+            source: config.backgroundPlaceholderImage
             visible: true //gets changed on video start
         }
 
