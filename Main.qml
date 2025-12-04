@@ -67,7 +67,7 @@ Pane {
             height: parent.height
             width: parent.width / 2.5
             anchors.left: parent.left
-            z: 2
+            z: 3
         }
 
         Image {
@@ -83,7 +83,8 @@ Pane {
         }
 
         AnimatedImage {
-            id: backgroundImage
+            id: background
+            z: 2
 
             MediaPlayer {
                 id: player
@@ -129,13 +130,13 @@ Pane {
                     player.play();
                 }
                 else{
-                    backgroundImage.source = config.background || config.Background
+                    background.source = config.background || config.Background
                 }
             }
         }
 
         MouseArea {
-            anchors.fill: backgroundImage
+            anchors.fill: background
             onClicked: parent.forceActiveFocus()
         }
 
