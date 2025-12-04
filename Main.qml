@@ -71,14 +71,14 @@ Pane {
         }
 
         Image {
-            id: backgroundPlaceholderImage
+            id: backgroundPlaceholder
 
             anchors.fill: parent
             width: parent.width
             height: parent.height
 
             z: 1
-            source: config.backgroundPlaceholderImage
+            source: config.backgroundPlaceholder
             visible: true //gets changed on video start
         }
 
@@ -94,7 +94,7 @@ Pane {
                 loops: -1
                 onPlayingChanged: {
                     console.log("Video started.")
-                    backgroundPlaceholderImage.visible = false;
+                    backgroundPlaceholder.visible = false;
                 }
             }
 
@@ -124,7 +124,7 @@ Pane {
                 var fileType = config.Background.substring(config.Background.lastIndexOf(".") + 1)
                 const videoFileTypes = ["avi", "mp4", "mov", "mkv", "m4v", "webm"];
                 if (videoFileTypes.includes(fileType)) {
-                    backgroundPlaceholderImage.visible = true;
+                    backgroundPlaceholder.visible = true;
                     player.source = Qt.resolvedUrl(config.Background)
                     player.play();
                 }

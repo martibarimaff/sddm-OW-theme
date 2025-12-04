@@ -23,7 +23,7 @@ and are therefore not to be sold for money
 */
 // SDDM Eucalyptus Drop Copyright at EOF
 
-import QtQuick 2.11
+//import QtQuick 2.11
 import QtQuick.Layouts 1.11
 import SddmComponents 2.0 as SDDM
 
