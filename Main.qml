@@ -87,7 +87,7 @@ Pane {
             z: 2
 
             MediaPlayer {
-                id: player
+                id: mediaPlayer
                 
                 videoOutput: videoOutput
                 autoPlay: true
@@ -110,7 +110,6 @@ Pane {
             width: parent.width
 
             horizontalAlignment: Image.AlignHCenter
-
             verticalAlignment: Image.AlignVCenter
 
             speed: 1.0
@@ -126,8 +125,8 @@ Pane {
                 const videoFileTypes = ["avi", "mp4", "mov", "mkv", "m4v", "webm"];
                 if (videoFileTypes.includes(fileType)) {
                     backgroundPlaceholder.visible = true;
-                    player.source = Qt.resolvedUrl(config.Background)
-                    player.play();
+                    mediaPlayer.source = Qt.resolvedUrl(config.Background)
+                    mediaPlayer.play();
                 }
                 else{
                     background.source = config.background || config.Background
