@@ -30,7 +30,7 @@ import QtQuick.Controls 2.4
 //import QtQuick.Layouts 1.11
 import QtQuick.Window 2.11
 import "Components"
-import QtMultimedia
+import QtMultimedia //for MediaPlayer
 
 Pane {
     id: root
@@ -50,10 +50,25 @@ Pane {
         Screen.primaryOrientation == Qt.PortraitOrientation ? parseInt(height / 160) : parseInt(height / 80)
     focus: true
 
+    background: backgroundPlaceholder
+    Image {
+            id: backgroundPlaceholder
+
+            anchors.fill: parent
+            width: parent.width
+            height: parent.height
+
+            z: 1
+            source: config.BackgroundPlaceholder
+            visible: true //gets changed on video start
+    }
+
+    
+
 
     Component.onCompleted: {
-        Orientation.getOrientation()
-        console.log('called orientation')
+        //Orientation.getOrientation()
+        console.log("Pane Completed")
     }
     Item {
         id: sizeHelper
@@ -68,18 +83,6 @@ Pane {
             width: parent.width / 2.5
             anchors.left: parent.left
             z: 3
-        }
-
-        Image {
-            id: backgroundPlaceholder
-
-            anchors.fill: parent
-            width: parent.width
-            height: parent.height
-
-            z: 1
-            source: config.backgroundPlaceholder
-            visible: true //gets changed on video start
         }
 
         AnimatedImage {
