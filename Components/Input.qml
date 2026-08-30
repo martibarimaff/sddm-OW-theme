@@ -457,7 +457,7 @@ Column {
 
     Timer {
         id: resetError
-        interval: 2000
+        interval: 1000 //2000
         onTriggered: failed = false
         running: false
     }

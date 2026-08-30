@@ -32,6 +32,7 @@ Column {
     width: parent.width / 2
 
     Label {
+        id: headerLabel
         anchors.horizontalCenter: parent.horizontalCenter
         font.pointSize: config.HeaderText !=="" ? root.font.pointSize * 4 : 0
         color: root.palette.text
