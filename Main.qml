@@ -21,7 +21,6 @@ Mobius Digital ​Fan Content Policy & Guidelines
 <https://www.mobiusdigitalgames.com/fan-content-policy.html>
 and are therefore not to be sold for money
 */
-// SDDM Eucalyptus Drop Copyright at EOF
 
 
 //import Qt5Compat.GraphicalEffects
@@ -36,9 +35,11 @@ Pane {
     id: root
 
     height: Screen.height
-    width: Screen.ScreenWidth
+    width: Screen.width
     
-    padding: -1//config.ScreenPadding
+    padding: -1 //to eliminate the leftside video artifact //temporary solution
+
+    //Setting Colors
     palette.button: "transparent"
     palette.highlight: config.AccentColour
     palette.text: config.MainColour
@@ -50,120 +51,67 @@ Pane {
         Screen.primaryOrientation == Qt.PortraitOrientation ? parseInt(height / 160) : parseInt(height / 80)
     focus: true
 
-    background: backgroundPlaceholder
-    Image {
+    Component.onCompleted: {
+        console.log("Pane Completed")
+    }
+
+
+    Item {
+        id: backgroundContainer
+
+        anchors.fill: parent    
+
+        Rectangle {
             id: backgroundPlaceholder
 
             anchors.fill: parent
-            width: parent.width
-            height: parent.height
+            color: "#000000"
+        }
 
-            z: 1
-            source: config.BackgroundPlaceholder
-            visible: true //gets changed on video start
-    }
+        Image {
+            id: staticBackground
 
+            anchors.fill: parent
+
+            source: config.StaticBackground
+            fillMode: Image.PreserveAspectCrop
+            visible: false //reverse
+        }
     
+        MediaPlayer {
+            id: mediaPlayer
+            
+            videoOutput: videoOutput
+            autoPlay: true
+            playbackRate: 1.0
+            loops: MediaPlayer.Infinite
+            onPlayingChanged: {
+                console.log("Video started.")
+            }
+        }
 
+        VideoOutput {
+            id: videoOutput
+            
+            anchors.fill: parent
 
-    Component.onCompleted: {
-        //Orientation.getOrientation()
-        console.log("Pane Completed")
+            fillMode: VideoOutput.PreserveAspectCrop
+        }
+
+        Component.onCompleted:{
+                var fileType = config.Background.substring(config.Background.lastIndexOf(".") + 1).toLowerCase()
+                const videoFileTypes = ["avi", "mp4", "mov", "mkv", "m4v", "webm"];
+                if (videoFileTypes.includes(fileType)) {
+                    mediaPlayer.source = Qt.resolvedUrl(config.Background)
+                    mediaPlayer.play();
+                }
+        }
     }
-    Item {
-        id: sizeHelper
 
-        anchors.fill: parent
-        height: parent.height
-        width: parent.width
-        
-        LoginForm {
+    LoginForm {
             id: form
             height: parent.height
             width: parent.width / 2.5
             anchors.left: parent.left
-            z: 3
-        }
-
-        AnimatedImage {
-            id: background
-            z: 2
-
-            MediaPlayer {
-                id: mediaPlayer
-                
-                videoOutput: videoOutput
-                autoPlay: true
-                playbackRate: 1.0
-                loops: -1
-                onPlayingChanged: {
-                    console.log("Video started.")
-                    backgroundPlaceholder.visible = false;
-                }
-            }
-
-            VideoOutput {
-                id: videoOutput
-                
-                fillMode: VideoOutput.PreserveAspectFit
-                anchors.fill: parent
-            }
-
-            height: parent.height
-            width: parent.width
-
-            horizontalAlignment: Image.AlignHCenter
-            verticalAlignment: Image.AlignVCenter
-
-            speed: 1.0
-            paused: false
-            fillMode: Image.PreserveAspectFit
-            asynchronous: true
-            cache: true
-            clip: true
-            mipmap: true
-
-            Component.onCompleted:{
-                var fileType = config.Background.substring(config.Background.lastIndexOf(".") + 1)
-                const videoFileTypes = ["avi", "mp4", "mov", "mkv", "m4v", "webm"];
-                if (videoFileTypes.includes(fileType)) {
-                    backgroundPlaceholder.visible = true;
-                    mediaPlayer.source = Qt.resolvedUrl(config.Background)
-                    mediaPlayer.play();
-                }
-                else{
-                    background.source = config.background || config.Background
-                }
-            }
-        }
-
-        MouseArea {
-            anchors.fill: background
-            onClicked: parent.forceActiveFocus()
-        }
-
     }
 }
-
-// This file is part of SDDM Eucalyptus Drop.
-// A theme for the Simple Display Desktop Manager.
-//
-// Copyright (C) 2018–2020 Marian Arlt
-// Copyright (C) 2020-2024 <matt.jolly@footclan.ninja>
-//
-// SDDM Eucalyptus Drop is free software: you can redistribute it and/or modify it
-// under the terms of the GNU General Public License as published by the
-// Free Software Foundation, either version 3 of the License, or any later version.
-//
-// You are required to preserve this and any additional legal notices, either
-// contained in this file or in other files that you received along with
-// SDDM Eucalyptus Drop that refer to the author(s) in accordance with
-// sections §4, §5 and specifically §7b of the GNU General Public License.
-//
-// SDDM Eucalyptus Drop is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with SDDM Eucalyptus Drop. If not, see <https://www.gnu.org/licenses/>
