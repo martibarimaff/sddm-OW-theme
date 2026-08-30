@@ -99,10 +99,10 @@ Pane {
         }
 
         Component.onCompleted:{
-                var fileType = config.Background.substring(config.Background.lastIndexOf(".") + 1).toLowerCase()
+                var fileType = config.VideoBackground.substring(config.VideoBackground.lastIndexOf(".") + 1).toLowerCase()
                 const videoFileTypes = ["avi", "mp4", "mov", "mkv", "m4v", "webm"];
                 if (videoFileTypes.includes(fileType)) {
-                    mediaPlayer.source = Qt.resolvedUrl(config.Background)
+                    mediaPlayer.source = Qt.resolvedUrl(config.VideoBackground)
                     mediaPlayer.play();
                 }
         }
