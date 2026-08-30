@@ -75,7 +75,6 @@ Pane {
 
             source: config.StaticBackground
             fillMode: Image.PreserveAspectCrop
-            visible: false //reverse
         }
     
         MediaPlayer {
