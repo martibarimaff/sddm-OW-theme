@@ -30,6 +30,7 @@ import Qt5Compat.GraphicalEffects
 
 Column {
     id: inputContainer
+    
     Layout.fillWidth: true
 
     property Control exposeSession: sessionSelect.exposeSession
@@ -185,7 +186,7 @@ Column {
             id: username
 
             //Change the font for the username
-            font.family: config.LoginFont != ""? config.LoginFont : Font
+            font.family: config.LoginFont !== "" ? config.LoginFont : Font ////////////////BROKEN
 
             text: config.ForceLastUser == "true" ? selectUser.currentText : null
             font.pointSize: root.font.pointSize
@@ -240,7 +241,7 @@ Column {
             id: password
 
             //Change the font for the password
-            font.family: config.LoginFont != ""? config.LoginFont : Font
+            font.family: config.LoginFont != ""? config.LoginFont : Font ////////////////BROKEN
 
             font.pointSize: root.font.pointSize
             anchors.centerIn: parent
@@ -261,7 +262,7 @@ Column {
                 radius: config.RoundCorners || 0
             }
             onAccepted: loginButton.clicked()
-            KeyNavigation.down: revealSecret
+            KeyNavigation.down: revealSecret ////////////////BROKEN
         }
 
         states: [

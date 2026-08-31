@@ -23,27 +23,32 @@ and are therefore not to be sold for money
 */
 // SDDM Eucalyptus Drop Copyright at EOF
 
-//import QtQuick 2.11
-import QtQuick.Layouts 1.11
-import SddmComponents 2.0 as SDDM
+import QtQuick //2.11
+import QtQuick.Layouts //1.11
+import SddmComponents as SDDM //was 2.0
 
 ColumnLayout {
     id: formContainer
+
     SDDM.TextConstants { id: textConstants }
 
-    property int p: config.ScreenPadding
-    property string a: config.FormPosition
-    property alias clockVisibility: clock.visible
+    //property int p: config.ScreenPadding
+    //property string a: config.FormPosition
+    //property alias clockVisibility: clock.visible
 
     Clock {
         id: clock
+
         Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
+        Layout.fillWidth: true
         Layout.preferredHeight: root.height / 3
     }
 
     Input {
         id: input
+
         Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
+        Layout.fillWidth: true
         Layout.preferredHeight: root.height / 3
     }
 

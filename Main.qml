@@ -24,9 +24,9 @@ and are therefore not to be sold for money
 
 
 
-import QtQuick// 2.11
-import QtQuick.Controls// 2.4
-import QtQuick.Window// 2.11
+import QtQuick // 2.11
+import QtQuick.Controls // 2.4
+import QtQuick.Window // 2.11
 import "Components"
 import QtMultimedia //for MediaPlayer
 

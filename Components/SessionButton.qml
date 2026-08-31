@@ -23,12 +23,13 @@ and are therefore not to be sold for money
 */
 // SDDM Eucalyptus Drop Copyright at EOF
 
-import QtQuick 2.11
-import QtQuick.Controls 2.4
+import QtQuick //2.11
+import QtQuick.Controls //2.4
 import Qt5Compat.GraphicalEffects
 
 Item {
     id: sessionButton
+
     height: root.font.pointSize
     width: parent.width /2
     anchors.horizontalCenter: parent.horizontalCenter

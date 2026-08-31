@@ -23,18 +23,20 @@ and are therefore not to be sold for money
 */
 // SDDM Eucalyptus Drop Copyright at EOF
 
-import QtQuick 2.11
-import QtQuick.Controls 2.4
+import QtQuick //2.11
+import QtQuick.Controls //2.4
 
 Column {
     id: clock
+
     spacing: 0
     width: parent.width / 2
 
     Label {
         id: headerLabel
+
         anchors.horizontalCenter: parent.horizontalCenter
-        font.pointSize: config.HeaderText !=="" ? root.font.pointSize * 4 : 0
+        font.pointSize: root.font.pointSize * 4
         color: root.palette.text
         renderType: Text.QtRendering
         text: config.HeaderText
@@ -42,6 +44,7 @@ Column {
 
     Label {
         id: timeLabel
+
         anchors.horizontalCenter: parent.horizontalCenter
         font.pointSize: root.font.pointSize * 7
         color: root.palette.text
@@ -55,6 +58,7 @@ Column {
 
     Label {
         id: dateLabel
+        
         anchors.horizontalCenter: parent.horizontalCenter
         font.pointSize: root.font.pointSize * 1.5
         color: root.palette.text
