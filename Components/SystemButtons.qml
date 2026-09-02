@@ -31,9 +31,9 @@ Mobius Digital ​Fan Content Policy & Guidelines
 and are therefore not to be sold for money
 */
 
-import QtQuick 2.11
-import QtQuick.Layouts 1.11
-import QtQuick.Controls 2.4
+import QtQuick //2.11
+import QtQuick.Layouts //1.11
+import QtQuick.Controls //2.4
 
 RowLayout {
 

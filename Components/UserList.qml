@@ -31,9 +31,9 @@ Mobius Digital ​Fan Content Policy & Guidelines
 and are therefore not to be sold for money
 */
 
-import QtQuick 2.11
-import QtQuick.Controls 2.4
-import Qt5Compat.GraphicalEffects
+import QtQuick //2.11
+import QtQuick.Controls //2.4
+import QtQuick.Effects
 
 Item {
     id: usernameField
@@ -118,14 +118,21 @@ Item {
                 radius: 10
                 color: root.palette.window
                 layer.enabled: true
-                layer.effect: DropShadow {
-                    transparentBorder: true
-                    horizontalOffset: 0
-                    verticalOffset: 0
-                    radius: 100
-                    samples: 201
-                    cached: true
-                    color: "#88000000"
+                // layer.effect: DropShadow {
+                //     transparentBorder: true
+                //     horizontalOffset: 0
+                //     verticalOffset: 0
+                //     radius: 100
+                //     samples: 201
+                //     cached: true
+                //     color: "#88000000"
+                // }
+                layer.effect: MultiEffect {
+                    shadowEnabled: true
+                    shadowHorizontalOffset: 0
+                    shadowVerticalOffset: 10 * config.InterfaceShadowSize
+                    shadowBlur: 1.0
+                    shadowColor: Qt.hsla(0,0,0,config.InterfaceShadowOpacity)
                 }
             }
 

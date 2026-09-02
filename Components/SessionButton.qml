@@ -33,7 +33,7 @@ and are therefore not to be sold for money
 
 import QtQuick //2.11
 import QtQuick.Controls //2.4
-import Qt5Compat.GraphicalEffects
+import QtQuick.Effects //Qt5Compat.GraphicalEffects
 
 Item {
     id: sessionButton
@@ -137,14 +137,21 @@ Item {
                 radius: config.RoundCorners / 2
                 color: config.BackgroundColour
                 layer.enabled: true
-                layer.effect: DropShadow {
-                    transparentBorder: true
-                    horizontalOffset: 0
-                    verticalOffset: 0
-                    radius: 20 * config.InterfaceShadowSize
-                    samples: 41 * config.InterfaceShadowSize
-                    cached: true
-                    color: Qt.hsla(0,0,0,config.InterfaceShadowOpacity)
+                // layer.effect: DropShadow {
+                //     transparentBorder: true
+                //     horizontalOffset: 0
+                //     verticalOffset: 0
+                //     radius: 20 * config.InterfaceShadowSize
+                //     samples: 41 * config.InterfaceShadowSize
+                //     cached: true
+                //     color: Qt.hsla(0,0,0,config.InterfaceShadowOpacity)
+                // }
+                layer.effect: MultiEffect {
+                    shadowEnabled: true
+                    shadowHorizontalOffset: 0
+                    shadowVerticalOffset: 10 * config.InterfaceShadowSize
+                    shadowBlur: 1.0
+                    shadowColor: Qt.hsla(0,0,0,config.InterfaceShadowOpacity)
                 }
             }
 

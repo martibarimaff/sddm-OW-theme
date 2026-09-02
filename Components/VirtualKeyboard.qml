@@ -31,8 +31,8 @@ Mobius Digital ​Fan Content Policy & Guidelines
 and are therefore not to be sold for money
 */
 
-import QtQuick 2.11
-import QtQuick.VirtualKeyboard 2.3
+import QtQuick //2.11
+import QtQuick.VirtualKeyboard //2.3
 
 InputPanel {
     id: virtualKeyboard
