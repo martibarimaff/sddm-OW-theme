@@ -31,19 +31,21 @@ Mobius Digital ​Fan Content Policy & Guidelines
 and are therefore not to be sold for money
 */
 
-import QtQuick //2.11
-import QtQuick.Controls //2.4
-import QtQuick.Effects //Qt5Compat.GraphicalEffects
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Effects
 
 Item {
     id: sessionButton
 
     height: root.font.pointSize
     width: parent.width /2
+
     anchors.horizontalCenter: parent.horizontalCenter
 
     property var selectedSession: selectSession.currentIndex
-    property string textConstantSession
+    // property string textConstantSession
+    property string textConstantSession: textConstants.session
     property int loginButtonWidth
     property Control exposeSession: selectSession
 

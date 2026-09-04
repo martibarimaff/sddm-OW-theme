@@ -455,7 +455,7 @@ Column {
 
     SessionButton {
         id: sessionSelect
-        textConstantSession: textConstants.session
+        // textConstantSession: textConstants.session //moved inside
         loginButtonWidth: loginButton.background.width
 
         anchors.horizontalCenter: parent.horizontalCenter
