@@ -39,7 +39,7 @@ Pane {
     height: Screen.height
     width: Screen.width
     
-    padding: -1 //to eliminate the leftside video artifact //temporary solution
+    padding: 0 //was -1 to eliminate the leftside video artifact
 
     //Setting Colors
     palette.button: "transparent"
