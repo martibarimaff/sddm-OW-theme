@@ -41,7 +41,7 @@ Column {
     
     Layout.fillWidth: true
 
-    property Control exposeSession: sessionSelect.exposeSession
+    property var exposeSession: sessionSelect.exposeSession
     property bool failed
 
     Item {
@@ -253,7 +253,7 @@ Column {
         height: root.font.pointSize * 4.5
         width: parent.width / 2
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.top: usernameField.bottom
+        // anchors.top: usernameField.bottom
 
         TextField {
             id: password
@@ -268,7 +268,7 @@ Column {
             focus: config.ForcePasswordFocus == "true" ? true : false
             selectByMouse: true
             echoMode: TextInput.Password
-            placeholderText: config.TranslatePlaceholderPassword || textConstants.password
+            placeholderText: config.TranslatePlaceholderPassword.toUpperCase() || textConstants.password.toUpperCase()
             horizontalAlignment: TextInput.AlignHCenter
             verticalAlignment: TextInput.AlignVCenter
             topPadding: 0
@@ -283,7 +283,7 @@ Column {
                 radius: config.RoundCorners || 0
             }
             onAccepted: loginButton.clicked()
-            KeyNavigation.down: revealSecret ////////////////BROKEN
+            KeyNavigation.down: loginButton ////////////////BROKEN
         }
 
         states: [
@@ -316,7 +316,8 @@ Column {
         height: root.font.pointSize * 2.3
         width: parent.width / 2
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.bottom: usernameField.top
+        // anchors.bottom: usernameField.top
+
         Label {
             id: errorMessage
             width: parent.width
@@ -361,8 +362,8 @@ Column {
         height: root.font.pointSize * 3
         width: parent.width / 2
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.top: passwordField.bottom
-        anchors.topMargin: root.font.pointSize * 5
+        // anchors.top: passwordField.bottom
+        // anchors.topMargin: root.font.pointSize * 5
 
         Button {
             id: loginButton
@@ -374,7 +375,8 @@ Column {
             hoverEnabled: true
 
             contentItem: Text {
-                text: parent.text
+                text: parent.text.toUpperCase()
+                font.family: config.LoginFont != ""? config.LoginFont : Font
                 color: config.OverrideLoginButtonTextColour != "" ? config.OverrideLoginButtonTextColour : root.palette.highlight.hslLightness >= 0.7 ? "#444" : "white"
                 font.pointSize: root.font.pointSize
                 horizontalAlignment: Text.AlignHCenter
@@ -465,7 +467,7 @@ Column {
         loginButtonWidth: loginButton.background.width
 
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.top: login.bottom
+        // anchors.top: login.bottom
     }
 
     Connections {
