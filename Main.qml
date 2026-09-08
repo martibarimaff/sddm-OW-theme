@@ -49,8 +49,8 @@ Pane {
     palette.window: config.BackgroundColour
 
     font.family: config.Font
-    font.pointSize: config.FontSize !== "" ? config.FontSize :
-        Screen.primaryOrientation == Qt.PortraitOrientation ? parseInt(height / 160) : parseInt(height / 80)
+    font.pointSize: (config.FontSize !== "" && config.FontSize > 0) ? config.FontSize :
+        Math.max(1, Screen.primaryOrientation == Qt.PortraitOrientation ? parseInt(height / 160) : parseInt(height / 80))
     focus: true
 
     Component.onCompleted: {
