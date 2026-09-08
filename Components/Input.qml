@@ -209,9 +209,12 @@ Column {
             anchors.centerIn: parent
             height: root.font.pointSize * 3
             width: parent.width
+            topPadding: 0
+            bottomPadding: 0
             placeholderText: config.TranslatePlaceholderUsername || textConstants.userName
             selectByMouse: true
             horizontalAlignment: TextInput.AlignHCenter
+            verticalAlignment: TextInput.AlignVCenter //
             renderType: Text.QtRendering
             onFocusChanged:{
                 if(focus)
@@ -267,6 +270,9 @@ Column {
             echoMode: TextInput.Password
             placeholderText: config.TranslatePlaceholderPassword || textConstants.password
             horizontalAlignment: TextInput.AlignHCenter
+            verticalAlignment: TextInput.AlignVCenter
+            topPadding: 0
+            bottomPadding: 0
             passwordCharacter: "•"
             passwordMaskDelay: config.ForceHideCompletePassword == "true" ? undefined : 500
             renderType: Text.QtRendering
