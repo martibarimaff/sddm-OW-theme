@@ -1,38 +1,47 @@
 /*
-Copyright (C) 2025  martibarimaff
+Copyright (C) 2018–2020 Marian Arlt
+Copyright (C) 2020-2024 <matt.jolly@footclan.ninja>
+Copyright (C) 2025-2026 martibarimaff
 
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or any
-later version.
+This file contains modified code originally created for "SDDM Eucalyptus Drop"
+and adapted for the SDDM Outer Wilds Theme.
 
-This program is distributed in the hope that it will be useful,
+SDDM Outer Wilds Theme is free software: you can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by the
+Free Software Foundation, either version 3 of the License, or any later version.
+
+You are required to preserve this and any additional legal notices, either
+contained in this file or in other files that you received along with
+SDDM Outer Wilds Theme that refer to the author(s) in accordance with
+sections §4, §5 and specifically §7b of the GNU General Public License.
+
+SDDM Outer Wilds Theme is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with this program.  If not, see <https://www.gnu.org/licenses/>.
+along with SDDM Outer Wilds Theme. If not, see <https://www.gnu.org/licenses/>
 
-NOTE
+---------ADDITIONAL NOTICES---------
 While the rest of this software is licensed under the GNU GPLv3 license,
 the Outer Wilds inspired background artworks are subject to the
 Mobius Digital ​Fan Content Policy & Guidelines
 <https://www.mobiusdigitalgames.com/fan-content-policy.html>
 and are therefore not to be sold for money
 */
-// SDDM Eucalyptus Drop Copyright at EOF
 
-import QtQuick 2.11
-import QtQuick.Layouts 1.11
-import QtQuick.Controls 2.4
-import Qt5Compat.GraphicalEffects
+import QtQuick //2.11
+import QtQuick.Layouts //1.11
+import QtQuick.Controls //2.4
+import QtQuick.Effects
 
 Column {
     id: inputContainer
+    
     Layout.fillWidth: true
 
-    property Control exposeSession: sessionSelect.exposeSession
+    property var exposeSession: sessionSelect.exposeSession
     property bool failed
 
     Item {
@@ -127,14 +136,21 @@ Column {
                     radius: config.RoundCorners / 2
                     color: root.palette.window
                     layer.enabled: true
-                    layer.effect: DropShadow {
-                        transparentBorder: true
-                        horizontalOffset: 0
-                        verticalOffset: 10 * config.InterfaceShadowSize
-                        radius: 20 * config.InterfaceShadowSize
-                        samples: 41 * config.InterfaceShadowSize
-                        cached: true
-                        color: Qt.hsla(0,0,0,config.InterfaceShadowOpacity)
+                    // layer.effect: DropShadow {
+                    //     transparentBorder: true
+                    //     horizontalOffset: 0
+                    //     verticalOffset: 10 * config.InterfaceShadowSize
+                    //     radius: 20 * config.InterfaceShadowSize
+                    //     samples: 41 * config.InterfaceShadowSize
+                    //     cached: true
+                    //     color: Qt.hsla(0,0,0,config.InterfaceShadowOpacity)
+                    // }
+                    layer.effect: MultiEffect {
+                        shadowEnabled: true
+                        shadowHorizontalOffset: 0
+                        shadowVerticalOffset: 10 * config.InterfaceShadowSize
+                        shadowBlur: 1.0
+                        shadowColor: Qt.hsla(0,0,0,config.InterfaceShadowOpacity)
                     }
                 }
 
@@ -185,7 +201,7 @@ Column {
             id: username
 
             //Change the font for the username
-            font.family: config.LoginFont != ""? config.LoginFont : Font
+            font.family: config.LoginFont !== "" ? config.LoginFont : Font ////////////////BROKEN
 
             text: config.ForceLastUser == "true" ? selectUser.currentText : null
             font.pointSize: root.font.pointSize
@@ -193,9 +209,12 @@ Column {
             anchors.centerIn: parent
             height: root.font.pointSize * 3
             width: parent.width
+            topPadding: 0
+            bottomPadding: 0
             placeholderText: config.TranslatePlaceholderUsername || textConstants.userName
             selectByMouse: true
             horizontalAlignment: TextInput.AlignHCenter
+            verticalAlignment: TextInput.AlignVCenter //
             renderType: Text.QtRendering
             onFocusChanged:{
                 if(focus)
@@ -234,13 +253,13 @@ Column {
         height: root.font.pointSize * 4.5
         width: parent.width / 2
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.top: usernameField.bottom
+        // anchors.top: usernameField.bottom
 
         TextField {
             id: password
 
             //Change the font for the password
-            font.family: config.LoginFont != ""? config.LoginFont : Font
+            font.family: config.LoginFont != ""? config.LoginFont : Font ////////////////BROKEN
 
             font.pointSize: root.font.pointSize
             anchors.centerIn: parent
@@ -249,8 +268,11 @@ Column {
             focus: config.ForcePasswordFocus == "true" ? true : false
             selectByMouse: true
             echoMode: TextInput.Password
-            placeholderText: config.TranslatePlaceholderPassword || textConstants.password
+            placeholderText: config.TranslatePlaceholderPassword.toUpperCase() || textConstants.password.toUpperCase()
             horizontalAlignment: TextInput.AlignHCenter
+            verticalAlignment: TextInput.AlignVCenter
+            topPadding: 0
+            bottomPadding: 0
             passwordCharacter: "•"
             passwordMaskDelay: config.ForceHideCompletePassword == "true" ? undefined : 500
             renderType: Text.QtRendering
@@ -261,7 +283,7 @@ Column {
                 radius: config.RoundCorners || 0
             }
             onAccepted: loginButton.clicked()
-            KeyNavigation.down: revealSecret
+            KeyNavigation.down: loginButton ////////////////BROKEN
         }
 
         states: [
@@ -294,7 +316,8 @@ Column {
         height: root.font.pointSize * 2.3
         width: parent.width / 2
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.bottom: usernameField.top
+        // anchors.bottom: usernameField.top
+
         Label {
             id: errorMessage
             width: parent.width
@@ -339,8 +362,8 @@ Column {
         height: root.font.pointSize * 3
         width: parent.width / 2
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.top: passwordField.bottom
-        anchors.topMargin: root.font.pointSize * 5
+        // anchors.top: passwordField.bottom
+        // anchors.topMargin: root.font.pointSize * 5
 
         Button {
             id: loginButton
@@ -352,7 +375,8 @@ Column {
             hoverEnabled: true
 
             contentItem: Text {
-                text: parent.text
+                text: parent.text.toUpperCase()
+                font.family: config.LoginFont != ""? config.LoginFont : Font
                 color: config.OverrideLoginButtonTextColour != "" ? config.OverrideLoginButtonTextColour : root.palette.highlight.hslLightness >= 0.7 ? "#444" : "white"
                 font.pointSize: root.font.pointSize
                 horizontalAlignment: Text.AlignHCenter
@@ -439,11 +463,11 @@ Column {
 
     SessionButton {
         id: sessionSelect
-        textConstantSession: textConstants.session
+        // textConstantSession: textConstants.session //moved inside
         loginButtonWidth: loginButton.background.width
 
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.top: login.bottom
+        // anchors.top: login.bottom
     }
 
     Connections {
@@ -457,31 +481,8 @@ Column {
 
     Timer {
         id: resetError
-        interval: 2000
+        interval: 1000 //2000
         onTriggered: failed = false
         running: false
     }
 }
-
-// This file is part of SDDM Eucalyptus Drop.
-// A theme for the Simple Display Desktop Manager.
-//
-// Copyright (C) 2018–2020 Marian Arlt
-// Copyright (C) 2020-2024 <matt.jolly@footclan.ninja>
-//
-// SDDM Eucalyptus Drop is free software: you can redistribute it and/or modify it
-// under the terms of the GNU General Public License as published by the
-// Free Software Foundation, either version 3 of the License, or any later version.
-//
-// You are required to preserve this and any additional legal notices, either
-// contained in this file or in other files that you received along with
-// SDDM Eucalyptus Drop that refer to the author(s) in accordance with
-// sections §4, §5 and specifically §7b of the GNU General Public License.
-//
-// SDDM Eucalyptus Drop is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with SDDM Eucalyptus Drop. If not, see <https://www.gnu.org/licenses/>
