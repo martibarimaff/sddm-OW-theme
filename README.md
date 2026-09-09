@@ -16,6 +16,12 @@ I did consult some LLMs to understand some of qtQuick classes and parameters bec
 ### Dependencies
 
 this theme is built using qt6 and a [custom font](https://github.com/martibarimaff/mbm-OW-Font) made by me.
+you will need:
+* sddm (qt6 build)
+* qt6 Declarative
+* qt6 Multimedia
+* qt6 5copmpat / Effects
+* FFmpeg (for video decoding and streaming)
 
 ### How to install a sddm theme
 
