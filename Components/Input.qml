@@ -321,38 +321,21 @@ Column {
         Label {
             id: errorMessage
             width: parent.width
-            text: failed ? config.TranslateLoginFailedWarning || textConstants.loginFailed + "!" : keyboard.capsLock ? config.TranslateCapslockWarning || textConstants.capslockWarning : null
+            text: failed ? config.TranslateLoginFailedWarning || textConstants.loginFailed + "!"
+                            : keyboard.capsLock ? config.TranslateCapslockWarning || textConstants.capslockWarning
+                                                    : null
             horizontalAlignment: Text.AlignHCenter
             font.pointSize: root.font.pointSize * 1
             font.italic: true
             color: root.palette.text
-            opacity: 0
-            states: [
-                State {
-                    name: "fail"
-                    when: failed
-                    PropertyChanges {
-                        target: errorMessage
-                        opacity: 1
-                    }
-                },
-                State {
-                    name: "capslock"
-                    when: keyboard.capsLock
-                    PropertyChanges {
-                        target: errorMessage
-                        opacity: 1
-                    }
+            opacity: (failed || keyboard.capsLock) ? 1 : 0
+
+            // Handles the fade in/out whenever opacity changes
+            Behavior on opacity {
+                PropertyAnimation {
+                    duration: 100
                 }
-            ]
-            transitions: [
-                Transition {
-                    PropertyAnimation {
-                        properties: "opacity"
-                        duration: 100
-                    }
-                }
-            ]
+            }
         }
     }
 
